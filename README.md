@@ -1,24 +1,4 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Facebook esque lightweight application where users may register or login if they have an existing account.
+Upon registeration users are taken to a shared wall where they may make posts or comment on other users posts. 
