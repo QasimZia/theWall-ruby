@@ -1,0 +1,42 @@
+<h3>Wall</h3>
+<h3>Welcome, <%= @user.first_name %>
+<a href='/logout'>Logout</a>
+<hr>
+<h2>Post a Message<h2>
+<% if flash[:errors] %>
+    <% flash[:errors].each do |error| %>
+    <p style='color: red;'><%= error %></p>
+    <% end %>
+<% end %>
+<form action='/wall/new_message' method='post'>
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <textarea name='post' cols='50' rows='5'></textarea>
+    <br>
+    <input type='submit'>
+</form>
+<hr>
+<% @messages.each do |message| %>
+    <h3><%= message.user.first_name %> <%= message.created_at %><h3>
+        <p><%= message.post %></p>
+    <div class='tab' style='margin-left:30px;'>
+        <% @comments.each do |comment| %>
+            <% if comment.message_id == message.id %>
+            <h4><%= comment.user.first_name %> <%= comment.created_at %><h4>
+            <p><%= comment.content %></p>
+            <% end %>
+        <% end %>
+        <% if flash[:errors] %>
+            <% flash[:errors].each do |error| %>
+            <p style='color: red;'><%= error %></p>
+            <% end %>
+        <% end %>   
+        <form action='wall/new_comment/' method='post'>
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input type='hidden' name='message_id' value='<%= message.id %>'>
+            <textarea name='content' cols='50' rows='5'></textarea>
+            <br>
+            <input type='submit'>
+        </form>
+    </div>
+    <hr>
+<% end %>

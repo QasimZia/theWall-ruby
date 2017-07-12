@@ -1,0 +1,13 @@
+<h1>Sign In to the WALL</h1>
+<% if flash[:errors] %>
+    <% flash[:errors].each do |error| %>
+    <p style='color: red;'><%= error %></p>
+    <% end %>
+<% end %>
+<fieldset style='width: 300px;'>
+    <form action='/sign_in' method='post'>
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <input type='text' name='first_name' placeholder='Username'>
+        <input type='submit'>
+    </form>
+</fieldset>
